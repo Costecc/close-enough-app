@@ -1,15 +1,15 @@
 $(function(){
 	$("#search").on("click", function(){
 		
-		var data_post = {}{ 
+		var data_post = { 
 				localization_x : $("#search_form").find("input[name='localization_x']").val(),
 				localization_y : $("#search_form").find("input[name='localization_y']").val(),
 				max_time : $("#search_form").find("input[name='InputTime']").val(),
-				min_solary : $("#search_form").find("input[name='salary']").val(),
-				max_solary : $("#search_form").find("input[name='salary']").val(),
-				position : $("#search_form").find("input[name='position']").val(),
+				min_solary : $( "#slider-range" ).slider( "values", 0 ),
+				max_solary : $( "#slider-range" ).slider( "values", 1 ),
+				position : $("#search_form").find("select[name='position']").val(),
 				is_worker : true,
-				transport: $("#search_form").find("input[name='transport']").val()
+				transport: $("#search_form").find("select[name='transport']").val()
 			};
 		
 		console.log(data_post);
