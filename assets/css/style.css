@@ -1,15 +1,45 @@
 body {
-  background-color:  white;
+	background-color: white;
 }
 
 .slider {
-
+	
+	position: relative;
+	
+	width:100%;
+	height:60rem;
+	
 	background-image: url("../images/slider.jpeg");
 	background-repeat: no-repeat;
 	background-position:top center;
 	background-size: 100%;
 	
-	width:100%;
-	height:60rem;
+}
+
+.slider h1 {
+	
+	text-align:center;
+	color:#fff;
+	font-size: 10rem;
+	
+}
+
+.slider .join {
+	
+	position:absolute;
+	bottom: 10rem;
+	
+	width:100vw;
+	
+	text-align:center;
+	
+}
+
+.slider .join button {
+	
+	min-width:200px;
+	padding:10px;
+	
+	text-align:center;
 	
 }
