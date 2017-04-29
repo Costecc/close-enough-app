@@ -1,5 +1,5 @@
 $(function(){
-	//$("#search").on("click", function(){
+	$("#search").on("click", function(){
 		$.ajax({
 			method: "POST",
 			url: "http://192.168.43.49:8000/top_result/",
@@ -20,7 +20,7 @@ $(function(){
 			//contentType: "json"
 		});
 		
-	//});
+	});
 	/*	
 	//$("#show_offers").on("click", function(){
 		$.ajax({
