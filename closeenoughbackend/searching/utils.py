@@ -3,11 +3,11 @@ import responses
 
 class DistanceMatrix(object):
 
-    def __init__(self):
-        self.client = googlemaps.Client(key='AIzaSyBTxamLvsUkEb5yo-i7NxTgsZOuoAvbmIU')
+    def __init__(self, key='AIzaSyBTxamLvsUkEb5yo-i7NxTgsZOuoAvbmIU'):
+        self.client = googlemaps.Client(key=key)
         self.matrix = {}
 
-    def CalcMatrix(self, olat, olng, dst = []):
+    def calc_matrix(self, olat, olng, dst):
 
         responses.add(responses.GET,
                       'https://maps.googleapis.com/maps/api/distancematrix/json',

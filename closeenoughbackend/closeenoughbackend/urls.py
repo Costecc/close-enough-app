@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import searching.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^top_result/', searching.views.top_result),
+    url(r'^offers/(?P<pk>[0-9]+)/$', searching.views.OfferDetail.as_view()),
+    url(r'^offers/$', searching.views.OfferList.as_view()),
+    url(r'^account/(?P<pk>[0-9]+)/$', searching.views.AccountDetail.as_view()),
+    url(r'^account/$', searching.views.AccountList.as_view()),
 ]
