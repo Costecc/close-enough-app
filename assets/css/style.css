@@ -92,7 +92,9 @@ padding-bottom:0rem;
   height: 600px;
 }
 
-.center {
+.title_template {
 	text-align:center;
+	
+	margin:2rem 0 2rem 0;
+	
 }
-  
