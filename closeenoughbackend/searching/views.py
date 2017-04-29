@@ -61,5 +61,4 @@ def top_result(request):
                                "name": result[i].name,
                                "url": result[i].url})
 
-
-    return HttpResponse(json.dumps(sort(new_result)))
+    return HttpResponse(json.dumps(sorted(new_result, key=lambda entity: entity['time'])))
