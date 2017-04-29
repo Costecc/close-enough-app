@@ -8,7 +8,7 @@ class DistanceMatrix(object):
         self.matrix = {}
 
 
-    def CalcMatrix(self, olat, olng, dst, transport):
+    def calc_matrix(self, olat, olng, dst, transport):
 
         responses.add(responses.GET,
                       'https://maps.googleapis.com/maps/api/distancematrix/json',

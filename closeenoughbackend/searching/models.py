@@ -10,6 +10,7 @@ class Account(models.Model):
     is_worker = models.BooleanField()
     email = models.EmailField()
     picture = models.ImageField()
+    url = models.TextField(default="lol")
 
     def __str__(self):
         return self.name
