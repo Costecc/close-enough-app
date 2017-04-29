@@ -50,6 +50,11 @@ body {
 	
 }
 
+.navbar {
+margin-bottom:0rem;
+padding-bottom:0rem;
+}
+
 .navbar-brand {
 	font-family:BrandFont;
 	font-size:4rem;
