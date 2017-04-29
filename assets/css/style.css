@@ -1,3 +1,8 @@
+@font-face {
+	font-family: BrandFont;
+        src: url("../fonts/EaDesignerBold.ttf");
+}
+
 body {
 	background-color: white;
 }
@@ -44,5 +49,13 @@ body {
 	
 }
 
+.navbar-brand {
+	font-family:BrandFont;
+	font-size:4rem;
+	leff-margin:2rem;
+}
 
+.navbar-rightwing li {
+	font-size:2rem;
+}
 
