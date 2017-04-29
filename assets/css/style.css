@@ -12,7 +12,8 @@ body {
 	position: relative;
 	
 	width:100%;
-	height:50vh;
+	height:60rem;
+	height-min:450px;
 	
 	background-image: url("../images/slider.jpeg");
 	background-repeat: no-repeat;
