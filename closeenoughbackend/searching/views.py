@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import json
+import math
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Offer, Account
@@ -33,24 +34,29 @@ class OfferDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
+
+def points2distance(olat, olng, dlat, dlong):
+    start_long = math.radians(olng)
+    start_latt = math.radians(olat)
+    end_long = math.radians(dlong)
+    end_latt = math.radians(dlat)
+    d_latt = end_latt - start_latt
+    d_long = end_long - start_long
+    a = math.sin(d_latt / 2) ** 2 + math.cos(start_latt) * math.cos(end_latt) * math.sin(d_long / 2) ** 2
+    c = 2 * math.asin(math.sqrt(a))
+    return 6371 * c
+
 @csrf_exempt
 def top_result(request):
     data = request.POST
-    # data["localization_x"]
-    # data["localization_y"]
-    # data["is_worker"]
-    # data["position"]
-    # data["min_salary"]
-    # data["transport"]
-    # print(data)
-    result = Offer.objects.all()
-        # .filter(position=data["position"])
-    # result = filter(lambda x: x.account.is_worker != data["is_worker"], result)
-    # result = filter(lambda x: x.min_salary > data["min_salary"], result)
+    result = filter(lambda x: x.account.is_worker != data["is_worker"], Offer.objects.all())
+
     print(map(lambda x: (x.localization_x, x.localization_y), result))
     arr_matrix = dist_matrix_util.calc_matrix(data["localization_x"], data["localization_y"],
                                               map(lambda x: (x.localization_x, x.localization_y), result),
                                               data["transport"])
+
+
 
     new_result = []
     for i in range(0, len(arr_matrix["rows"][0]["elements"])):
@@ -64,5 +70,14 @@ def top_result(request):
                                "name": result[i].account.name,
                                "url": result[i].account.url})
 
-    return HttpResponse(json.dumps(sorted(new_result, key=lambda entity: entity['time'])))
+    new_result.sort(key=lambda entity: entity['time'])
+
+    if(len(new_result) < 4):
+        radius = points2distance(data["localization_x"], data["localization_y"],new_result[len(new_result)-1]["location_x"], new_result[len(new_result)-1]["location_y"])
+    else:
+        radius = points2distance(data["localization_x"], data["localization_y"],new_result[3]["location_x"], new_result[3]["location_y"])
+
+    new_result.append({"radius": radius})
+
+    return HttpResponse(json.dumps(new_result))
     # return HttpResponse("lol")

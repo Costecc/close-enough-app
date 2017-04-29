@@ -22,10 +22,16 @@ class DistanceMatrix(object):
         if(transport == 'driving'):
             mode = 'driving'
             self.matrix = self.client.distance_matrix(origins, destinations, mode)
-        else:
+        elif(transport == 'transit'):
             mode = 'transit'
             transit_mode = 'rail|bus'
             self.matrix = self.client.distance_matrix(origins, destinations, mode, transit_mode)
+        elif(transport == 'bicycling'):
+            mode = 'bicycling'
+            self.matrix = self.client.distance_matrix(origins, destinations, mode)
+        elif(transport == 'walking')
+            mode = 'walking'
+            self.matrix = self.client.distance_matrix(origins, destinations, mode)
         print(self.matrix)
 
         return self.matrix
