@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Bitter|Slabo+27px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -134,14 +134,14 @@
 	  
 <div class="row">
 
-<input type=hidden value=0 id=localization_x />
-<input type=hidden value=0 id=localization_y />
+<input type=text value="0" id=localization_x name=localization_x />
+<input type=text value="0" id=localization_y name=localization_y />
 		
 <div class="col-md-4"><div class="parameters">
     
 <label for="time">Preferowany Czas [min] </label>
     
-<input type="number" class="form-control" id="InputTime" min=0 max=2000 placeholder="Limit czasu na dojazd">
+<input type="number" class="form-control" name="InputTime" id="InputTime" min=0 max=2000 placeholder="Limit czasu na dojazd">
     
 <label for="job">Stanowisko</label>
     
@@ -154,14 +154,14 @@
 	
 <p>
   <label for="salary">Zakres płac:</label>
-  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+  <input type="text" id="amount" name="salary" readonly style="border:0; color:#f6931f; font-weight:bold;">
 </p>
 <div id="slider-range"></div>
 </div>
   </br>
 <label for="transport" class="transport">Metoda transportu</label>
   
-<select id="mode" class="form-control transport">
+<select id="mode" class="form-control transport" name="transport">
       
 <option value="DRIVING">Samochód</option>
       
