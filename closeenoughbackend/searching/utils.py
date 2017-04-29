@@ -7,7 +7,7 @@ class DistanceMatrix(object):
         self.client = googlemaps.Client(key='AIzaSyBTxamLvsUkEb5yo-i7NxTgsZOuoAvbmIU')
         self.matrix = {}
 
-    def CalcMatrix(self, olat, olng, dst = []):
+    def CalcMatrix(self, olat, olng, dst, transport):
 
         responses.add(responses.GET,
                       'https://maps.googleapis.com/maps/api/distancematrix/json',
@@ -18,7 +18,13 @@ class DistanceMatrix(object):
         origins = olat, olng
         destinations = dst
 
-        self.matrix = self.client.distance_matrix(origins, destinations)
+        if(transport == 'driving'):
+            mode = 'driving'
+            self.matrix = self.client.distance_matrix(origins, destinations, mode)
+        else:
+            mode = 'transit'
+            transit_mode = 'rail|bus'
+            self.matrix = self.client.distance_matrix(origins, destinations, mode, transit_mode)
         print(self.matrix)
 
         return self.matrix
