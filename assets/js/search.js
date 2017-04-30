@@ -33,16 +33,7 @@ $(function(){
 				success: function(result){
 					console.log(result);
 				},
-				data: { 
-					localization_x : "52.238",
-					localization_y : "21.015",
-					max_time : "9999",
-					min_solary : "0",
-					max_solary : "1000000",
-					position : "6",
-					is_worker : true,
-					transport: "1"
-				},
+				data: data_post,
 				dataType: "json"
 			});
 		}else{
@@ -51,6 +42,17 @@ $(function(){
 		
 	});
 	/*	
+	{ 
+					localization_x : "52.238",
+					localization_y : "21.015",
+					max_time : "9999",
+					min_solary : "0",
+					max_solary : "1000000",
+					position : "6",
+					is_worker : true,
+					transport: "1"
+				}
+				
 	//$("#show_offers").on("click", function(){
 		$.ajax({
 			method: "GET",
