@@ -98,3 +98,13 @@ padding-bottom:0rem;
 	margin:2rem 0 2rem 0;
 	
 }
+
+#error_search:empty {
+	display:none;
+}
+
+#error_search {
+	margin-top:15px;
+	color:#f31915;
+	background:#fdcdcd;
+}

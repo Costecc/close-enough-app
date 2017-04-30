@@ -14,27 +14,36 @@ $(function(){
 		
 		console.log(data_post);
 		
-		/*
-		$.ajax({
-			method: "POST",
-			url: "http://192.168.43.49:8000/top_result/",
-			success: function(result){
-				console.log(result);
-			},
-			data: { 
-				localization_x : "52.238",
-				localization_y : "21.015",
-				max_time : "9999",
-				min_solary : "0",
-				max_solary : "1000000",
-				position : "6",
-				is_worker : true,
-				transport: "1"
-			},
-			dataType: "json"//,
-			//contentType: "json"
-		});
-		*/
+		var error = "";
+		
+		if(!data_post.localization_x > 0 || !data_post.localization_y > 0)
+			error = "Nie wybrano lokalizacji.<br />";
+		
+		if(!data_post.max_time > 0)
+			error = "Nie wybrano limitu czasu na dojazd. <br />";
+		
+		if(error == ""){
+			$.ajax({
+				method: "POST",
+				url: "http://192.168.43.49:8000/top_result/",
+				success: function(result){
+					console.log(result);
+				},
+				data: { 
+					localization_x : "52.238",
+					localization_y : "21.015",
+					max_time : "9999",
+					min_solary : "0",
+					max_solary : "1000000",
+					position : "6",
+					is_worker : true,
+					transport: "1"
+				},
+				dataType: "json"
+			});
+		}else{
+			$("#error_search").html(error).show();
+		}
 		
 	});
 	/*	
