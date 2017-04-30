@@ -1,6 +1,8 @@
 $(function(){
 	$("#search").on("click", function(){
 		
+		$("#error_search").hide();
+		
 		var data_post = { 
 				localization_x : $("#search_form").find("input[name='localization_x']").val(),
 				localization_y : $("#search_form").find("input[name='localization_y']").val(),
@@ -12,7 +14,7 @@ $(function(){
 				transport: $("#search_form").find("select[name='transport']").val()
 			};
 		
-		console.log(data_post);
+		//console.log(data_post);
 		
 		var error = "";
 		
@@ -23,6 +25,8 @@ $(function(){
 			error = "Nie wybrano limitu czasu na dojazd. <br />";
 		
 		if(error == ""){
+			//console.log(data_post);
+			
 			$.ajax({
 				method: "POST",
 				url: "http://192.168.43.49:8000/top_result/",
