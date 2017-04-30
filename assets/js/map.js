@@ -12,17 +12,7 @@ function initMap() {
     center: {lat: 52.229802, lng: 21.011818}
   });
 
-//   setTimeout(() => offersArray.forEach(offer => {
-//     if(flag) {
-//       let newMarker = new google.maps.Marker({
-//         position: {lat: offer.location_x, lng: offer.location_y},
-//         map: map,
-//       })
-//       flag = ~flag;
-//
-//     }
-// })
-//   }, 1000);
+
 
   var timerId = setInterval(() => {
       console.log('weszlo do set')
@@ -40,6 +30,8 @@ function initMap() {
               })
               markersToShow.push(newMarker)
 
+
+
               var citymap = {
       startPoint: {lat: 52.229802, lng: 21.011818},
       radius: 10000
@@ -53,15 +45,28 @@ for (var city in citymap) {
           strokeOpacity: 0.8,
           strokeWeight: 1.5,
           fillColor: '#EDA445 ',
-          fillOpacity: 0.05,
+          fillOpacity: 0.01,
           map: map,
-          center: citymap.startPoint,
-          radius: citymap.radius
+          center: {lat: latitude, lng: longitude},
+          radius: citymap.radius,
+          draggable: false
         });
       }
 
 
             }
+          })
+
+          markersToShow.forEach(function(marker) {
+             marker.addListener('click', function(event) {
+
+               globalLat = marker.position.lat();
+               globalLng = marker.position.lng();
+
+               console.log(marker)
+               calculateAndDisplayRoute(directionsService, directionsDisplay)
+               console.log('lol')
+             })
           })
         console.log(markersToShow);
         flag = false;
@@ -76,8 +81,11 @@ for (var city in citymap) {
   map.addListener('click', function(event) {
     markersArray.map(marker => marker.setMap(null));
 
-    var latitude = event.latLng.lat();
-    var longitude = event.latLng.lng();
+    latitude = event.latLng.lat();
+    longitude = event.latLng.lng();
+
+    $("#search_form").find("input[name='localization_x']").val(latitude);
+    $("#search_form").find("input[name='localization_y']").val(longitude)
 
     var marker = new google.maps.Marker({
       position: {lat: latitude, lng: longitude},
@@ -87,12 +95,7 @@ for (var city in citymap) {
 
     markersArray.push(marker);
 
-
-
-
-
-
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
+    // calculateAndDisplayRoute(directionsService, directionsDisplay);
 
   });
 
@@ -106,11 +109,13 @@ for (var city in citymap) {
 
 }
 
+
+
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   var selectedMode = document.getElementById('mode').value;
   directionsService.route({
-    origin: markersArray.length === 0 ? {lat: 52.219827, lng: 21.018017} : markersArray[markersArray.length - 1].position,
-    destination: {lat: 52.229802, lng: 21.011818},
+    origin: markersArray.length === 0 ? {lat: 52.219827, lng: 21.018017} : {lat: latitude, lng: longitude},
+    destination: {lat: globalLat, lng: globalLng},
     travelMode: selectedMode
   }, function(response, status) {
     if (status === 'OK') {
