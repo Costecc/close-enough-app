@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -196,8 +195,8 @@
 
 <!-- Profil -->
 
-<button id=test_01 class="btn btn-primary">test profil</button>
-<button id=test_02 class="btn btn-primary">test oferta</button>
+<button id=test_01>test profil</button>
+<button id=test_02>test oferta</button>
 
 <div class="container" id="Profile">
 
@@ -212,14 +211,14 @@
 
 			<div class="row">
      			        <div class="col-md-3"><img id="user_photo" src="http://placehold.it/200x200" alt="..."></div>
-				<div class="col-md-4"><label for="experience_field" class="title_desc"><i class="fa fa-id-card" aria-hidden="true"></i>Doświadczenie:</label><div id="experience_cont"></div></div>
-				<div class="col-md-5 border-left"><label for="skills_field" class="title_desc"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Umiejętności i Stosowane Technologie:</label><div id="skills_cont"></div></div>
+				<div class="col-md-4"><label for="experience_field" class="title_desc">Doświadczenie:</label><div id="experience_cont"></div></div>
+				<div class="col-md-5"><label for="skills_field" class="title_desc">Umiejętności i Stosowane Technologie:</label><div id="skills_cont"></div></div>
 			</div>
-			<div class="row border-top"><label for="description_title" class="title_desc"><i class="fa fa-comment-o" aria-hidden="true"></i>Kilka słów opisu:</label></div>
+			<div class="row"><label for="description_title" class="title_desc">Kilka słów opisu:</label></div>
 			<div class="row" class="user_description" id="desc_cont">
 
 			</div>
-			<div class="row border-top"><label for="links_title" class="title_desc"><i class="fa fa-globe" aria-hidden="true"></i>Linki zewnętrzne:</label></div>
+			<div class="row"><label for="links_title" class="title_desc">Linki zewnętrzne:</label></div>
 			<div class="row" class="user_links" id="links_cont">
 
 			</div>
@@ -250,13 +249,13 @@
 
 			<div class="row">
      			        <div class="col-md-3"><img id="offer_photo" src="http://placehold.it/200x200" alt="..."></div>
-				<div class="col-md-5"><label for="skills_field" class="title_desc"><i class="fa fa-users" aria-hidden="true"></i>Stanowisko:</label><div id="offer_position_cont"></div></div>
+				<div class="col-md-5"><label for="skills_field" class="title_desc">Stanowisko:</label><div id="offer_position_cont"></div></div>
 			</div>
-			<div class="row border-top">
-				<div class="col-md-5"><label for="skills_field" class="title_desc"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>Wynagrodzenie:</label><div id="offer_salary_cont"></div></div>
-				<div class="col-md-5 border-left"><label for="skills_field" class="title_desc"><i class="fa fa-industry" aria-hidden="true"></i>Adres:</label><div id="offer_address_cont"></div></div>
+			<div class="row">
+				<div class="col-md-5"><label for="skills_field" class="title_desc">Wynagrodzenie:</label><div id="offer_salary_cont"></div></div>
+				<div class="col-md-5"><label for="skills_field" class="title_desc">Adres:</label><div id="offer_address_cont"></div></div>
 			</div>
-			<div class="row border-top"><label for="description_title" class="title_desc"><i class="fa fa-commenting" aria-hidden="true"></i>Kilka słów opisu:</label></div>
+			<div class="row"><label for="description_title" class="title_desc">Kilka słów opisu:</label></div>
 			<div class="row" class="user_description" id="offer_desc_cont">
 
 			</div>
@@ -276,6 +275,10 @@
 
 
 <!-- footer -->
+<div id="footer">
+	 &copy SoftGeeks 2017 - Wszelkie prawa zastrzeżone.
+</div>
+
 
 <div style={"visibility":"hidden"} id="radius"></div>
   <script async defer
