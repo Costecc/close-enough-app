@@ -44,8 +44,9 @@ $(function() {
 									transport: data_post.transport.toLowerCase()
 								}
             }).done(function(response) {
-							RADIUS = response.radius;
-							console.log(response.radius)
+							var RADIUS = response.radius;
+							$('#radius').text(RADIUS);
+							console.log(RADIUS)
 							markersToShow.forEach(marker => marker.setMap(null))
 							offersArray=[]
 							markersToShow=[]
@@ -54,6 +55,8 @@ $(function() {
                 // console.log(offersArray)
 								flag = !flag;
 								// console.log(flag)
+
+
 
 
             }).fail(function(error) {

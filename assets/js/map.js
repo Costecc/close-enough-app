@@ -2,9 +2,11 @@ var markersArray = [];
 var offersArray = [];
 var markersToShow = []
 var flag = false;
-
+arr_city = []
 function initMap() {
-  var directionsDisplay = new google.maps.DirectionsRenderer;
+  var directionsDisplay = new google.maps.DirectionsRenderer({
+    suppressMarkers: true
+  });
   var directionsService = new google.maps.DirectionsService;
 
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -17,6 +19,11 @@ function initMap() {
   var timerId = setInterval(() => {
       console.log('weszlo do set')
 
+
+
+
+
+
       if(flag){
         // markersToShow.forEach(marker => marker.setMap(null))
         console.log(markersToShow)
@@ -27,32 +34,38 @@ function initMap() {
               var newMarker = new google.maps.Marker({
                 position: {lat: offer.location_x, lng: offer.location_y},
                 map: map,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
               })
               markersToShow.push(newMarker)
 
 
-
-              var citymap = {
-      startPoint: {lat: 52.229802, lng: 21.011818},
-      radius: 10000
-    };
+              var rad = $('#radius').text()
 
 
-for (var city in citymap) {
-        // Add the circle for this city to the map.
-        var cityCircle = new google.maps.Circle({
-          strokeColor: '#FF9100 ',
-          strokeOpacity: 0.8,
-          strokeWeight: 1.5,
-          fillColor: '#EDA445 ',
-          fillOpacity: 0.01,
-          map: map,
-          center: {lat: latitude, lng: longitude},
-          radius: citymap.radius,
-          draggable: false
-        });
-      }
 
+                            var citymap = {
+                    startPoint: {lat: 52.229802, lng: 21.011818},
+                    radius: parseFloat(rad)*1200
+                  };
+
+              arr_city.forEach(elem => elem.setMap(null));
+              arr_city = []
+              for (var city in citymap) {
+                      // Add the circle for this city to the map.
+
+                      var cityCircle = new google.maps.Circle({
+                        strokeColor: '#FF9100 ',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1.5,
+                        fillColor: '#EDA445 ',
+                        fillOpacity: 0.1,
+                        map: map,
+                        center: {lat: latitude, lng: longitude},
+                        radius: citymap.radius,
+                        draggable: false
+                      });
+                      arr_city.push(cityCircle);
+                    }
 
             }
           })
@@ -63,12 +76,12 @@ for (var city in citymap) {
                globalLat = marker.position.lat();
                globalLng = marker.position.lng();
 
-               console.log(marker)
+              //  console.log(marker)
                calculateAndDisplayRoute(directionsService, directionsDisplay)
-               console.log('lol')
+              //  console.log('lol')
              })
           })
-        console.log(markersToShow);
+        // console.log(markersToShow);
         flag = false;
       }
 
@@ -87,9 +100,11 @@ for (var city in citymap) {
     $("#search_form").find("input[name='localization_x']").val(latitude);
     $("#search_form").find("input[name='localization_y']").val(longitude)
 
+
     var marker = new google.maps.Marker({
       position: {lat: latitude, lng: longitude},
       map: map,
+
 
     });
 
@@ -116,7 +131,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   directionsService.route({
     origin: markersArray.length === 0 ? {lat: 52.219827, lng: 21.018017} : {lat: latitude, lng: longitude},
     destination: {lat: globalLat, lng: globalLng},
-    travelMode: selectedMode
+    travelMode: selectedMode,
+
   }, function(response, status) {
     if (status === 'OK') {
       directionsDisplay.setDirections(response);
