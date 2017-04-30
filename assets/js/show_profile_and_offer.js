@@ -54,7 +54,7 @@ $("body").on("click", "#test_02", function(e){
 		success: function(result){
 			//if(result.is_worker){
 			//	user
-				var el = $("#Profile");
+				var el = $("#Offer");
 				var img = el.find("#user_photo");
 				var position = el.find("#offer_position_cont");
 				var salary = el.find("#offer_salary_cont");
