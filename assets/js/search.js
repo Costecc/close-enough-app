@@ -36,8 +36,8 @@ $(function() {
                 type: 'POST',
                 dataType: 'json',
                 data: {
-									location_x: 52.229802,
-									location_y: 21.011818,
+									location_x: parseFloat(data_post.location_x),
+									location_y: parseFloat(data_post.location_y),
 									max_time: parseInt(data_post.max_time),
 									min_salary: parseInt(data_post.min_salary),
 									max_salary: parseInt(data_post.max_salary),
@@ -46,15 +46,20 @@ $(function() {
 									transport: data_post.transport.toLowerCase()
 								}
             }).done(function(response) {
+							var RADIUS = response.radius;
+							$('#radius').text(RADIUS);
+							console.log(RADIUS)
 							markersToShow.forEach(marker => marker.setMap(null))
 							offersArray=[]
 							markersToShow=[]
                 response.entities.forEach(result => offersArray.push(result));
                 // console.log(response.entities);
-                console.log(offersArray)
+                // console.log(offersArray)
 								flag = !flag;
+
 								console.log(flag)
 $("#Profile, #Offer").hide();
+
 
             }).fail(function(error) {
                 console.log(error);
