@@ -57,7 +57,8 @@ $(function() {
                 // console.log(offersArray)
 								flag = !flag;
 
-								console.log(flag)
+								console.log(flag);
+								console.log(response);
 $("#Profile, #Offer").hide();
 
 
