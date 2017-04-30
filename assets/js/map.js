@@ -1,4 +1,5 @@
-var markersArray = [];
+const markersArray = [];
+const offersArray = [];
 
 function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -8,6 +9,16 @@ function initMap() {
     zoom: 13,
     center: {lat: 52.229802, lng: 21.011818}
   });
+
+  setTimeout(()=> {offersArray.map(offer => {
+    let newMarker = new google.maps.Marker({
+      position: {lat: offer.location_x, lng: offer.location_y},
+      map: map,
+    });
+
+    console.log(offersArray)
+  })
+  }, 2000)
 
   directionsDisplay.setMap(map);
 
@@ -25,6 +36,11 @@ function initMap() {
 
     markersArray.push(marker);
 
+
+
+
+
+
     calculateAndDisplayRoute(directionsService, directionsDisplay);
 
   });
@@ -36,8 +52,7 @@ function initMap() {
   var onChangeHandler = function() {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
-  document.getElementById('start').addEventListener('change', onChangeHandler);
-  document.getElementById('end').addEventListener('change', onChangeHandler);
+
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -54,3 +69,34 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     }
   });
 }
+
+
+
+// testing fetching data
+
+function getOffers() {
+  let allOffers = [];
+  const url = 'http://192.168.1.94:8000/top_result/';
+  $.ajax({
+    url: url,
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      "location_x": 52.229802,
+      "location_y": 21.011818,
+      "is_worker": true,
+      "transport": "driving",
+      "max_time": 10,
+      "min_salary": 0
+
+    }
+  }).done(function(response) {
+    response.entities.forEach(result => offersArray.push(result));
+    console.log(response.entities);
+    console.log(offersArray)
+  }).fail(function(error) {
+    console.log(error);
+  });
+}
+
+getOffers();
