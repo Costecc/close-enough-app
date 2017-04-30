@@ -11,7 +11,8 @@ function initMap() {
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
-    center: {lat: 52.229802, lng: 21.011818}
+    center: {lat: 52.229802, lng: 21.011818},
+    disableDefaultUI: true
   });
 
 
@@ -34,7 +35,8 @@ function initMap() {
               var newMarker = new google.maps.Marker({
                 position: {lat: offer.location_x, lng: offer.location_y},
                 map: map,
-                icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                id: offer.id
               })
               markersToShow.push(newMarker)
 
@@ -75,6 +77,7 @@ function initMap() {
 
                globalLat = marker.position.lat();
                globalLng = marker.position.lng();
+               currentOfferId = marker.id
 
               //  console.log(marker)
                calculateAndDisplayRoute(directionsService, directionsDisplay)
