@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
-    
+
 <head>
-    
+
 <meta charset="utf-8">
-    
+
 <title>Close Enough</title>
-    
+
 <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -34,124 +34,124 @@
 
 
 </head>
-  
+
 
 <body>
 
-	
+
 <!-- menu -->
 
 <div class="container_page">
 
-	
+
 <nav class="navbar navbar-default" role="navigation">
-	  
+
 <div class="container-fluid">
-		
+
 <!-- Grupowanie "marki" i przycisku rozwijania mobilnego menu -->
-		
+
 <div class="navbar-header">
-		 
+
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			
+
 <span class="sr-only">Rozwiń nawigację</span>
-			
+
 <span class="icon-bar"></span>
-			
+
 <span class="icon-bar"></span>
-			
+
 <span class="icon-bar"></span>
-		  
+
 </button>
-		  
+
 <a class="navbar-brand" href="#">Close Enough</a>
-		
+
 </div>
 
 
-		
+
 <!-- Grupowanie elementów menu w celu lepszego wyświetlania na urządzeniach moblinych -->
-		
+
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		  
+
 <ul class="nav navbar-nav navbar-right navbar-rightwing">
-			
+
 <li><a href="#logowanie">Zaloguj</a></li>
-			
+
 <li><a href="#rejestracja">Rejestracja</a></li>
-		  
+
 </ul>
-		
+
 </div>
 <!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
-	
+
 </nav>
 
 		<!-- slider -->
 
-	
+
 <div class="slider">
-			
+
 <h1>Find the job of your dreams.</h1>
 
-<h2>Enough close for you.</h2>			
+<h2>Enough close for you.</h2>
 <div class="join">
-				
+
 <button class="btn btn-primary">Dołącz do nas</button>
-			
+
 </div>
 	</div>
 <!--
 <div class="container slider">
-  
+
 <div class="jumbotron experience">
 	<h1>Find the job of your dreams.</h1>
-			
+
 <div class="join">
-				
+
 <button class="btn btn-primary">Dołącz do nas</button>
-			
+
 </div>
   </div>
 </div>
 -->
 
-		
+
 <!-- search -->
 
 <div class="container">
-	  
+
 	<div class="row">
-		
+
 		<h1 class="title_template"> Interesujące oferty w twojej okolicy </h1>
-		
+
 	</div>
 
 </div>
 
 	<div class="container" id=search_form>
-	  
+
 <div class="row">
 
 <input type=hidden value="0" id=localization_x name=localization_x />
 <input type=hidden value="0" id=localization_y name=localization_y />
-		
+
 <div class="col-md-4"><div class="parameters">
-    
+
 <label for="time">Preferowany Czas [min] </label>
-    
+
 <input type="number" class="form-control" name="InputTime" id="InputTime" min=0 max=2000 placeholder="Limit czasu na dojazd">
-    
+
 <label for="job">Stanowisko</label>
-    
+
     <select class="form-control" name="position">
 
-    <option value="Sofware Developer">Sofware Developer</option>    
+    <option value="Software Developer">Software Developer</option>
     <option value="Graphical Designer">Graphical Designer</option>
     <option value="Software Tester">Sofware Tester</option>
     </select>
-	
+
 <p>
   <label for="salary">Zakres płac:</label>
   <input type="text" id="amount" name="salary" readonly style="border:0; color:#f6931f; font-weight:bold;">
@@ -160,17 +160,17 @@
 </div>
   </br>
 <label for="transport" class="transport">Metoda transportu</label>
-  
+
 <select id="mode" class="form-control transport" name="transport">
-      
+
 <option value="DRIVING">Samochód</option>
-      
+
 <option value="WALKING">Pieszo</option>
-      
+
 <option value="BICYCLING">Rower</option>
-      
+
 <option value="TRANSIT">Komunikacja Miejska</option>
-    
+
 </select>
 
 <br />
@@ -182,29 +182,29 @@
 <div class="alert alert-danger" id="error_search"></div>
 
 </div>
-  
-		
+
+
 <div class="col-md-8" id="map">
 
-		
+
 </div>
 	  </div>
 	</div>
 
 </div>
 
-	
+
 <!-- footer -->
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzrzKRCW-Prb60UHlYadM7iQ4pnWSzV7k&callback=initMap">
-  
+
 </script>
   <script src="assets/js/jquery-3.2.1.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
-  
+
 <script src="assets/js/jquery-ui.min.js"></script>
   <script src="assets/js/map.js"></script>
-  
+
   <script src="assets/js/search.js"></script>
 </body>
 

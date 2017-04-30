@@ -1,5 +1,7 @@
-const markersArray = [];
-const offersArray = [];
+var markersArray = [];
+var offersArray = [];
+var markersToShow = []
+var flag = false;
 
 function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -10,15 +12,64 @@ function initMap() {
     center: {lat: 52.229802, lng: 21.011818}
   });
 
-  setTimeout(()=> {offersArray.map(offer => {
-    let newMarker = new google.maps.Marker({
-      position: {lat: offer.location_x, lng: offer.location_y},
-      map: map,
-    });
+//   setTimeout(() => offersArray.forEach(offer => {
+//     if(flag) {
+//       let newMarker = new google.maps.Marker({
+//         position: {lat: offer.location_x, lng: offer.location_y},
+//         map: map,
+//       })
+//       flag = ~flag;
+//
+//     }
+// })
+//   }, 1000);
 
-    console.log(offersArray)
-  })
-  }, 2000)
+  var timerId = setInterval(() => {
+      console.log('weszlo do set')
+
+      if(flag){
+        // markersToShow.forEach(marker => marker.setMap(null))
+        console.log(markersToShow)
+        offersArray.forEach(offer => {
+            if(flag) {
+
+              console.log('weszlo do ifa')
+              var newMarker = new google.maps.Marker({
+                position: {lat: offer.location_x, lng: offer.location_y},
+                map: map,
+              })
+              markersToShow.push(newMarker)
+
+              var citymap = {
+      startPoint: {lat: 52.229802, lng: 21.011818},
+      radius: 10000
+    };
+
+
+for (var city in citymap) {
+        // Add the circle for this city to the map.
+        var cityCircle = new google.maps.Circle({
+          strokeColor: '#FF9100 ',
+          strokeOpacity: 0.8,
+          strokeWeight: 1.5,
+          fillColor: '#EDA445 ',
+          fillOpacity: 0.05,
+          map: map,
+          center: citymap.startPoint,
+          radius: citymap.radius
+        });
+      }
+
+
+            }
+          })
+        console.log(markersToShow);
+        flag = false;
+      }
+
+
+  }, 500)
+
 
   directionsDisplay.setMap(map);
 
@@ -75,28 +126,22 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 // testing fetching data
 
 function getOffers() {
+
+
   let allOffers = [];
   const url = 'http://192.168.1.94:8000/top_result/';
   $.ajax({
     url: url,
     type: 'POST',
     dataType: 'json',
-    data: {
-      "location_x": 52.229802,
-      "location_y": 21.011818,
-      "is_worker": true,
-      "transport": "driving",
-      "max_time": 10,
-      "min_salary": 0
-
-    }
+    data: data_post
   }).done(function(response) {
     response.entities.forEach(result => offersArray.push(result));
     console.log(response.entities);
-    console.log(offersArray)
+    // console.log(offersArray)
   }).fail(function(error) {
     console.log(error);
   });
 }
 
-getOffers();
+// getOffers();
