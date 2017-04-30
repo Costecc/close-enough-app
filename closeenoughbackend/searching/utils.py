@@ -29,7 +29,7 @@ class DistanceMatrix(object):
         elif(transport == 'bicycling'):
             mode = 'bicycling'
             self.matrix = self.client.distance_matrix(origins, destinations, mode)
-        elif(transport == 'walking')
+        elif(transport == 'walking'):
             mode = 'walking'
             self.matrix = self.client.distance_matrix(origins, destinations, mode)
         print(self.matrix)

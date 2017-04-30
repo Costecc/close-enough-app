@@ -49,18 +49,21 @@ def points2distance(olat, olng, dlat, dlong):
 @csrf_exempt
 def top_result(request):
     data = request.POST
-    result = filter(lambda x: x.account.is_worker != data["is_worker"], Offer.objects.all())
+    result = filter(lambda x: x.account.is_worker != data["is_worker"] and x.position == data["position"],
 
+                    Offer.objects.all())
+    if len(result) == 0:
+        return HttpResponse(json.dumps({"entities": [], "radius": 0}))
     print(map(lambda x: (x.localization_x, x.localization_y), result))
-    arr_matrix = dist_matrix_util.calc_matrix(data["localization_x"], data["localization_y"],
+    arr_matrix = dist_matrix_util.calc_matrix(data["location_x"], data["location_y"],
                                               map(lambda x: (x.localization_x, x.localization_y), result),
                                               data["transport"])
 
 
-
     new_result = []
     for i in range(0, len(arr_matrix["rows"][0]["elements"])):
-        if arr_matrix["rows"][0]["elements"][i]["duration"]["value"] < data["max_time"]:
+        if int(arr_matrix["rows"][0]["elements"][i]["duration"]["value"]/60) < int(data["max_time"]) and \
+            result[i].min_salary > int(data["min_salary"]):
             new_result.append({"location_x": result[i].localization_x,
                                "location_y": result[i].localization_y,
                                "min_salary": result[i].min_salary,
@@ -71,13 +74,15 @@ def top_result(request):
                                "url": result[i].account.url})
 
     new_result.sort(key=lambda entity: entity['time'])
-
-    if(len(new_result) < 4):
-        radius = points2distance(data["localization_x"], data["localization_y"],new_result[len(new_result)-1]["location_x"], new_result[len(new_result)-1]["location_y"])
+    location_x = float(data["location_x"])
+    location_y = float(data["location_y"])
+    if len(new_result) == 0:
+        radius = 0
+    elif(len(new_result) < 4):
+        radius = points2distance(location_x, location_y,new_result[len(new_result)-1]["location_x"], new_result[len(new_result)-1]["location_y"])
     else:
-        radius = points2distance(data["localization_x"], data["localization_y"],new_result[3]["location_x"], new_result[3]["location_y"])
+        radius = points2distance(location_x, location_y,new_result[3]["location_x"], new_result[3]["location_y"])
 
-    new_result.append({"radius": radius})
 
-    return HttpResponse(json.dumps(new_result))
+    return HttpResponse(json.dumps({"entities": new_result, "radius": radius}))
     # return HttpResponse("lol")
