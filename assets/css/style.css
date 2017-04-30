@@ -134,25 +134,20 @@ padding-bottom:0rem;
 	}
 }
 */
-
-.fa {
-	margin-right: .5em;
-}
-
-.border-left {
-	border-left:0px solid #ec971f;
-}
-.border-top {
-	margin-top:.5em;
-	border-top:1px solid #ec971f;
-}
-
-#offer_photo, #user_photo {
-	margin-bottom:3rem;
-	width:20rem;
-	height:20rem;
-}
-
-#Profile, #Offer {
-	display:none;
+/* costecc */
+#footer {
+	position: relative;
+	width:100%;
+	height: 4.1vw;
+	text-align: center;
+	background-color: #F0AD4A;
+	padding: 1rem 0;
+	font-family: 'Bitter';
+	vertical-align: middle;
+	color: white;
+	font-size:2rem;
+	letter-spacing: 0.4rem;
+	text-shadow:0 0 0.5rem #AAA;
+	margin-top: 3rem;
+	border-top: 0.3rem solid #E0AC3A;
 }
