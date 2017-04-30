@@ -134,3 +134,25 @@ padding-bottom:0rem;
 	}
 }
 */
+
+.fa {
+	margin-right: .5em;
+}
+
+.border-left {
+	border-left:0px solid #ec971f;
+}
+.border-top {
+	margin-top:.5em;
+	border-top:1px solid #ec971f;
+}
+
+#offer_photo, #user_photo {
+	margin-bottom:3rem;
+	width:20rem;
+	height:20rem;
+}
+
+#Profile, #Offer {
+	display:none;
+}

@@ -1,4 +1,6 @@
 
+var user_login = false;
+
 $(function() {
     $("#search").on("click", function() {
 
@@ -11,7 +13,7 @@ $(function() {
             min_salary: $("#slider-range").slider("values", 0),
             max_salary: $("#slider-range").slider("values", 1),
             position: $("#search_form").find("select[name='position']").val(),
-            is_worker: true,
+            is_worker: user_login,
             transport: $("#search_form").find("select[name='transport']").val()
         };
 
@@ -52,7 +54,7 @@ $(function() {
                 console.log(offersArray)
 								flag = !flag;
 								console.log(flag)
-
+$("#Profile, #Offer").hide();
 
             }).fail(function(error) {
                 console.log(error);
@@ -76,6 +78,18 @@ $(function() {
     	});
     	*/
     //});
+	
+	$(document).on("keydown", function() {
+		if ( event.which == 80 ) {
+			user_login = false;
+			event.preventDefault();
+		}
+		if ( event.which == 79 ) {
+			user_login = true;
+			event.preventDefault();
+		}
+	});
+
 
 });
 
